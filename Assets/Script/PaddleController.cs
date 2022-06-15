@@ -37,6 +37,7 @@ public class PaddleController : MonoBehaviour
         return Vector2.zero;
     }
 
+    //Debug.Log("TEST: " + movement);
     private void MoveObject(Vector2 movement)
     {
         
