@@ -7,7 +7,10 @@ public class PUSpeedUpController : MonoBehaviour
     public PowerUpManager manager;
     public Collider2D ball;
     public float magnitude;
-    
+
+    public int magnitudeDuration;
+    private float timer;
+
 
     private void OnTriggerEnter2D(Collider2D collision)
     {

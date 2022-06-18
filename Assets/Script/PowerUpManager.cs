@@ -12,21 +12,60 @@ public class PowerUpManager : MonoBehaviour
     public Vector2 powerUpAreaMax;
     public List<GameObject> powerUpTemplateList;
 
+    
+
     private List<GameObject> powerUpList;
 
     private float timer;
+    private float timerPaddleLengKiri;
+    private float timerPaddleLengKanan;
+    private bool lengUpKanan;
+    private bool lengUpKiri;
+    private bool speedUpKanan;
+    private bool speedUpKiri;
+    private float timerPaddleSpeedUpKanan;
+    private float timerPaddleSpeedUpKiri;
     
+
+
     private void Start()
-    {
-        
+    {        
         powerUpList = new List<GameObject>();
         timer = 0;
+        timerPaddleLengKiri = 0;
+        timerPaddleLengKanan = 0;
+        lengUpKiri = false;
+        lengUpKanan =  false;
+        speedUpKiri = false;
+        speedUpKanan =  false;
+        timerPaddleSpeedUpKanan = 0;
+        timerPaddleSpeedUpKiri = 0;
+
     }
 
     private void Update()
     {
        
         timer += Time.deltaTime;
+
+        if (lengUpKiri) 
+        {
+            timerPaddleLengKiri += Time.deltaTime;
+        }
+        else if (lengUpKanan)
+        {
+            timerPaddleLengKanan += Time.deltaTime;
+        }
+        if (speedUpKiri) 
+        {
+            timerPaddleSpeedUpKiri += Time.deltaTime;
+        }
+        else if (speedUpKanan)
+        {
+            timerPaddleSpeedUpKanan += Time.deltaTime;
+        }
+
+            
 
         if (timer > spawnInterval)
         {
@@ -84,4 +123,77 @@ public class PowerUpManager : MonoBehaviour
             RemovePowerUp(powerUpList[0]);
         }
     }
+
+
+    // Get collider ball -> PU Paddle Panjang then set timer on
+
+    public void leftLengTimer(bool panjangKiri)
+    {
+        lengUpKiri = panjangKiri;
+    }
+
+    public void rightLengTimer(bool panjangKanan)
+    {
+        lengUpKanan = panjangKanan;
+    }
+
+
+    // Get timer Paddlle Panjang
+
+    public float GettimerPaddleLengKiri()
+    {
+        return timerPaddleLengKiri;
+    }
+    
+    public float GettimerPaddleLengKanan()
+    {
+        return timerPaddleLengKanan;
+    }
+
+    // Reset efek Paddle Panjang
+    public void ResettimerPaddleLengKiri()
+    {
+        timerPaddleLengKiri = 0;
+    }
+
+    public void ResettimerPaddleLengKanan()
+    {
+        timerPaddleLengKanan = 0;
+    }
+
+    // Get collider ball -> PU Paddle SpeedUp    then set timer on
+
+    public void leftSpeedUpTimer(bool cepatKiri)
+    {
+        speedUpKiri = cepatKiri;
+    }
+
+    public void rightSpeedUpTimer(bool cepatKanan)
+    {
+        speedUpKanan = cepatKanan;
+    }
+
+
+    //Get timer Paddlle SpeedUp
+    public float GettimerPaddleSpeedUpKiri()
+    {
+        return timerPaddleSpeedUpKiri;
+    }
+
+    public float GettimerPaddleSpeedUpKanan()
+    {
+        return timerPaddleSpeedUpKanan;
+    }
+
+    // Reset efek Paddle Cepat
+    public void ResettimerPaddleSpeedUpKiri()
+    {
+        timerPaddleSpeedUpKiri = 0;
+    }
+
+    public void ResettimerPaddleSpeedUpKanan()
+    {
+        timerPaddleSpeedUpKanan = 0;
+    }
 }
+

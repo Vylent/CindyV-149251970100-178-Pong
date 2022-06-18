@@ -30,4 +30,5 @@ public class BallControler : MonoBehaviour
     {
         rig.velocity *= magnitude;
     }
+
 }
